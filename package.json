@@ -38,6 +38,7 @@
 	"dependencies": {
 		"cors": "2.8.5",
 		"dotenv": "16.0.1",
-		"http-rest-api": "0.1.1"
+		"http-rest-api": "0.1.1",
+		"yup": "0.32.11"
 	}
 }
