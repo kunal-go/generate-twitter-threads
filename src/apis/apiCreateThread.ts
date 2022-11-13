@@ -11,10 +11,10 @@ export const apiCreateThread = new HttpRestApi({
 	path: "/threads",
 	handler: async ({ req }) => {
 		const body = await parseYupSchema(bodySchema, req.body)
-		const threads = generateTweetThread(
+		const tweets = generateTweetThread(
 			body.tweetBody,
 			MAX_TWEET_BODY_LENGTH,
 		)
-		return { threads }
+		return { tweets }
 	},
 })
