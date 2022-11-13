@@ -1,45 +1,49 @@
-export function generateThreads(
+export function generateTweetThread(
 	text: string,
 	maxCharacterLimit: number,
 ): string[] {
-	const threads: string[] = []
+	const tweets: string[] = []
 
 	let startTextIndex = 0
-	let threadNo = 1
+	let tweetNo = 1
 	while (startTextIndex < text.length - 1) {
-		const endTextIndex = getThreadEndTextIndex({
+		const endTextIndex = getTweetEndTextIndex({
 			text,
 			startTextIndex,
 			maxCharacterLimit,
-			threadNo,
+			tweetNo,
 		})
 
 		const threadText = text.substring(startTextIndex, endTextIndex).trim()
-		threads.push(threadText)
+		tweets.push(threadText)
 		startTextIndex = endTextIndex
 	}
 
-	return threads.map((thread, i) => {
-		const threadCounterText = `[${i + 1}/${threads.length}]`
+	if (tweets.length === 1) {
+		return tweets
+	}
+
+	return tweets.map((thread, i) => {
+		const threadCounterText = `[${i + 1}/${tweets.length}]`
 		return `${threadCounterText} ${thread}`
 	})
 }
 
-function getThreadEndTextIndex({
+function getTweetEndTextIndex({
 	maxCharacterLimit,
 	startTextIndex,
 	text,
-	threadNo,
+	tweetNo,
 }: {
 	text: string
 	maxCharacterLimit: number
-	threadNo: number
+	tweetNo: number
 	startTextIndex: number
 }): number {
-	const reservedCharacterCount = threadNo > 10 ? 7 : 6
-	const allowedCharacterCount = maxCharacterLimit - reservedCharacterCount
+	const reservedCharacterLength = tweetNo > 10 ? 7 : 6
+	const allowedCharacterLength = maxCharacterLimit - reservedCharacterLength
 
-	let endTextIndex = startTextIndex + allowedCharacterCount
+	let endTextIndex = startTextIndex + allowedCharacterLength
 	if (endTextIndex >= text.length) {
 		return text.length
 	}

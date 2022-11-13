@@ -1,3 +1,3 @@
-import { apiCreateThreads } from "./apiCreateThreads"
+import { apiCreateThread } from "./apiCreateThread"
 
-export const apis = [apiCreateThreads]
+export const apis = [apiCreateThread]
