@@ -40,7 +40,14 @@ function getTweetEndTextIndex({
 	tweetNo: number
 	startTextIndex: number
 }): number {
-	const reservedCharacterLength = tweetNo > 10 ? 7 : 6
+	let reservedCharacterLength = 6
+	if (text.length >= 2740) {
+		reservedCharacterLength++
+	}
+	if (tweetNo > 10) {
+		reservedCharacterLength++
+	}
+
 	const allowedCharacterLength = maxCharacterLimit - reservedCharacterLength
 
 	let endTextIndex = startTextIndex + allowedCharacterLength
